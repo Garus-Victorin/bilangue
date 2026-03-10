@@ -25,14 +25,20 @@ class AccountSettingController extends Controller
         $user = Auth::user();
 
         $request->validate([
-            'name' => 'required|string|max:255',
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'status' => 'required|in:online,offline',
+            'type' => 'required|in:admin,user',
             'current_password' => 'nullable|required_with:new_password',
             'new_password' => 'nullable|min:8|confirmed',
         ]);
 
-        $user->name = $request->name;
+        $user->nom = $request->nom;
+        $user->prenom = $request->prenom;
         $user->email = $request->email;
+        $user->status = $request->status;
+        $user->type = $request->type;
 
         if ($request->filled('new_password')) {
             if (!Hash::check($request->current_password, $user->password)) {

@@ -21,9 +21,13 @@ class UserType extends GraphQLType
                 'type' => Type::nonNull(Type::int()),
                 'description' => 'The id of the user',
             ],
-            'name' => [
+            'nom' => [
                 'type' => Type::string(),
-                'description' => 'The name of the user',
+                'description' => 'The last name of the user',
+            ],
+            'prenom' => [
+                'type' => Type::string(),
+                'description' => 'The first name of the user',
             ],
             'email' => [
                 'type' => Type::string(),
@@ -32,6 +36,14 @@ class UserType extends GraphQLType
             'email_verified_at' => [
                 'type' => Type::string(),
                 'description' => 'The email verification date',
+            ],
+            'status' => [
+                'type' => Type::string(),
+                'description' => 'The status of the user (online/offline)',
+            ],
+            'type' => [
+                'type' => Type::string(),
+                'description' => 'The type of the user (admin/user)',
             ],
             'created_at' => [
                 'type' => Type::string(),

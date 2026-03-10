@@ -26,9 +26,17 @@
                         @method('PUT')
 
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom</label>
-                            <input type="text" name="name" id="name" value="{{ old('name', $user->name) }}" class="input input-bordered w-full" required>
-                            @error('name')
+                            <label for="nom" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom</label>
+                            <input type="text" name="nom" id="nom" value="{{ old('nom', $user->nom) }}" class="input input-bordered w-full" required>
+                            @error('nom')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label for="prenom" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Prénom</label>
+                            <input type="text" name="prenom" id="prenom" value="{{ old('prenom', $user->prenom) }}" class="input input-bordered w-full" required>
+                            @error('prenom')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
@@ -39,6 +47,22 @@
                             @error('email')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
+                        </div>
+
+                        <div>
+                            <label for="status" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Statut</label>
+                            <select name="status" id="status" class="input input-bordered w-full">
+                                <option value="offline" {{ $user->status == 'offline' ? 'selected' : '' }}>Offline</option>
+                                <option value="online" {{ $user->status == 'online' ? 'selected' : '' }}>Online</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="type" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Type</label>
+                            <select name="type" id="type" class="input input-bordered w-full">
+                                <option value="user" {{ $user->type == 'user' ? 'selected' : '' }}>Utilisateur</option>
+                                <option value="admin" {{ $user->type == 'admin' ? 'selected' : '' }}>Administrateur</option>
+                            </select>
                         </div>
 
                         <div class="border-t pt-6">
