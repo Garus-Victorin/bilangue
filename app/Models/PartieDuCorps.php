@@ -17,5 +17,6 @@ class PartieDuCorps extends Model
         'yoruba',
         'dendi',
         'anglais',
+        'emoji',
     ];
 }

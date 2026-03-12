@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Presentation;
-use App\Http\Requests\StorePresentationRequest;
-use App\Http\Requests\UpdatePresentationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PresentationController extends Controller
 {
@@ -15,8 +14,36 @@ class PresentationController extends Controller
     public function index()
     {
         $presentations = Presentation::all();
-
         return view('presentations.index', compact('presentations'));
+    }
+    
+    /**
+     * Display learning view based on user's languages.
+     */
+    public function learn()
+    {
+        $presentations = Presentation::all();
+        
+        $user = Auth::user();
+        $fromLang = $user->langue_parlee ?? 'francais';
+        $toLang = $user->langue_apprendre ?? 'fon';
+        
+        // Map language keys to column names
+        $langMap = [
+            'francais' => 'francais',
+            'anglais' => 'anglais',
+            'fon' => 'fon',
+            'goun' => 'goun',
+            'youba' => 'youba',
+            'dendi' => 'dendi',
+            'bariba' => 'bariba',
+            'yoruba' => 'yoruba'
+        ];
+        
+        $fromColumn = $langMap[$fromLang] ?? 'francais';
+        $toColumn = $langMap[$toLang] ?? 'fon';
+        
+        return view('presentations.learn', compact('presentations', 'fromColumn', 'toColumn', 'fromLang', 'toLang'));
     }
 
     /**
@@ -30,9 +57,19 @@ class PresentationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePresentationRequest $request)
+    public function store(Request $request)
     {
-        Presentation::create($request->validated());
+        $validated = $request->validate([
+            'presentation' => 'required|string|max:255',
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+        ]);
+
+        Presentation::create($validated);
 
         return redirect()
             ->route('presentations.index')
@@ -61,9 +98,19 @@ class PresentationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePresentationRequest $request, Presentation $presentation)
+    public function update(Request $request, Presentation $presentation)
     {
-        $presentation->update($request->validated());
+        $validated = $request->validate([
+            'presentation' => 'required|string|max:255',
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+        ]);
+
+        $presentation->update($validated);
 
         return redirect()
             ->route('presentations.index')
@@ -82,3 +129,4 @@ class PresentationController extends Controller
             ->with('success', 'Présentation supprimée avec succès.');
     }
 }
+

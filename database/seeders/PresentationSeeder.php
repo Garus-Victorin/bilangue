@@ -7,29 +7,28 @@ use App\Models\Presentation;
 
 class PresentationSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $presentations = [
             [
-                'presentation' => 'Je m\'appelle…',
-                'francais' => 'Je m\'appelle…',
+                'presentation' => 'Je mappelle…',
+                'francais' => 'Je mappelle…',
                 'goun' => 'Mi yɔ…',
                 'fon' => 'Un na ɖɔ…',
                 'yoruba' => 'Orúkọ mi ni…',
                 'dendi' => 'Mi yɔ…',
                 'anglais' => 'My name is…',
+                'emoji' => '👋',
             ],
             [
-                'presentation' => 'Comment tu t\'appelles ?',
-                'francais' => 'Comment tu t\'appelles ?',
+                'presentation' => 'Comment tu tappelles ?',
+                'francais' => 'Comment tu tappelles ?',
                 'goun' => 'A yɔ dɛ ?',
                 'fon' => 'A na ɖɔ dɛ ?',
                 'yoruba' => 'Kí ni orúkọ rẹ ?',
                 'dendi' => 'A yɔ dɛ ?',
                 'anglais' => 'What is your name?',
+                'emoji' => '❓',
             ],
             [
                 'presentation' => 'Je suis développeur',
@@ -39,6 +38,7 @@ class PresentationSeeder extends Seeder
                 'yoruba' => 'Èmi jẹ́ òǹgbàágbọ̀',
                 'dendi' => 'Mi yɔ dɛvlɔpɔ',
                 'anglais' => 'I am a developer',
+                'emoji' => '💻',
             ],
             [
                 'presentation' => 'Je viens du Bénin',
@@ -48,6 +48,7 @@ class PresentationSeeder extends Seeder
                 'yoruba' => 'Mo wá láti Bẹ̀nẹ̀',
                 'dendi' => 'Mi wá tɔ Bɛnin',
                 'anglais' => 'I come from Benin',
+                'emoji' => '🌍',
             ],
             [
                 'presentation' => 'Enchanté de te rencontrer',
@@ -57,6 +58,7 @@ class PresentationSeeder extends Seeder
                 'yoruba' => 'Inú mi dùn láti pàdé rẹ',
                 'dendi' => 'Mi sú dɔ a',
                 'anglais' => 'Nice to meet you',
+                'emoji' => '😊',
             ],
             [
                 'presentation' => 'Permets-moi de me présenter',
@@ -66,6 +68,7 @@ class PresentationSeeder extends Seeder
                 'yoruba' => 'Jẹ́ kí n ṣe àfihàn ara mi',
                 'dendi' => 'Na mi na mi kpɔn',
                 'anglais' => 'Let me introduce myself',
+                'emoji' => '🙋',
             ],
         ];
 
@@ -74,3 +77,4 @@ class PresentationSeeder extends Seeder
         }
     }
 }
+

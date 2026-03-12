@@ -21,6 +21,7 @@ class ExpressionVoyageSeeder extends Seeder
                 'yoruba' => 'Nibo ni ibudo wa?',
                 'dendi' => 'Gaar ɗoo ɗe ?',
                 'anglais' => 'Where is the station?',
+                'emoji' => '🚉',
             ],
             [
                 'francais' => 'Combien coûte le billet ?',
@@ -29,6 +30,7 @@ class ExpressionVoyageSeeder extends Seeder
                 'yoruba' => 'Elo ni tikẹti na?',
                 'dendi' => 'Tikɛti ɗoo ɗe ?',
                 'anglais' => 'How much is the ticket?',
+                'emoji' => '💰',
             ],
             [
                 'francais' => 'Je veux aller à…',
@@ -37,6 +39,7 @@ class ExpressionVoyageSeeder extends Seeder
                 'yoruba' => 'Mo fẹ lọ si…',
                 'dendi' => 'N ɗoo ɗe…',
                 'anglais' => 'I want to go to…',
+                'emoji' => '🚌',
             ],
             [
                 'francais' => 'À quelle heure part le bus ?',
@@ -45,14 +48,16 @@ class ExpressionVoyageSeeder extends Seeder
                 'yoruba' => 'Akoko wo ni ọkọ akẹru naa maa lọ?',
                 'dendi' => 'Bus ɗoo ɗe ?',
                 'anglais' => 'What time does the bus leave?',
+                'emoji' => '⏰',
             ],
             [
-                'francais' => 'Pouvez-vous m’aider, s’il vous plaît ?',
+                'francais' => 'Pouvez-vous maider, sil vous plait ?',
                 'goun' => 'I bɛna sɔrɔ n dɛmɛ wa ?',
                 'fon' => 'Un ɖɔ ɖe ?',
                 'yoruba' => 'Ṣe o le ran mi lọwọ, jọwọ?',
                 'dendi' => 'I ɗoo ɗe ?',
                 'anglais' => 'Can you help me, please?',
+                'emoji' => '🆘',
             ],
             [
                 'francais' => 'Je suis perdu',
@@ -61,22 +66,25 @@ class ExpressionVoyageSeeder extends Seeder
                 'yoruba' => 'Mo ti ṣọna',
                 'dendi' => 'N ɗoo ɗe',
                 'anglais' => 'I am lost',
+                'emoji' => '🗺️',
             ],
             [
-                'francais' => 'Où se trouve l’hôtel ?',
+                'francais' => 'Où se trouve lhotel ?',
                 'goun' => 'Otɛli kɔnɔ ga ?',
                 'fon' => 'Otɛli ɖɔ ɖe ?',
                 'yoruba' => 'Nibo ni hotẹẹli wa?',
                 'dendi' => 'Otɛli ɗoo ɗe ?',
                 'anglais' => 'Where is the hotel?',
+                'emoji' => '🏨',
             ],
             [
                 'francais' => 'Merci pour votre aide',
-                'goun' => 'A’ni sɔrɔ i dɛmɛ',
+                'goun' => 'Ani sɔrɔ i dɛmɛ',
                 'fon' => 'Akpɛ ɖɔ ɖe',
                 'yoruba' => 'O ṣeun fun iranlọwọ rẹ',
-                'dendi' => 'A’ni ɗoo ɗe',
+                'dendi' => 'Ani ɗoo ɗe',
                 'anglais' => 'Thank you for your help',
+                'emoji' => '🙏',
             ],
         ];
 
@@ -85,3 +93,4 @@ class ExpressionVoyageSeeder extends Seeder
         }
     }
 }
+

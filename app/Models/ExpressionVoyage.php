@@ -17,5 +17,6 @@ class ExpressionVoyage extends Model
         'yoruba',
         'dendi',
         'anglais',
+        'emoji',
     ];
 }

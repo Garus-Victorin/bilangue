@@ -21,6 +21,7 @@ class SalutationSeeder extends Seeder
                 'yoruba'   => 'Ẹ káàárọ̀',
                 'dendi'    => 'Fofo',
                 'bariba'   => 'Baani',
+                'emoji'    => '👋',
             ],
             [
                 'francais' => 'Bonsoir',
@@ -30,6 +31,7 @@ class SalutationSeeder extends Seeder
                 'yoruba'   => 'Ẹ káalẹ́',
                 'dendi'    => 'Fofo zaan',
                 'bariba'   => 'Baani zaan',
+                'emoji'    => '🌙',
             ],
             [
                 'francais' => 'Bienvenue',
@@ -39,6 +41,7 @@ class SalutationSeeder extends Seeder
                 'yoruba'   => 'Ẹ kú àbọ̀',
                 'dendi'    => 'Fofo kɔ',
                 'bariba'   => 'Baani wa',
+                'emoji'    => '🏠',
             ],
             [
                 'francais' => 'Au revoir',
@@ -48,6 +51,7 @@ class SalutationSeeder extends Seeder
                 'yoruba'   => 'Ó dàbọ̀',
                 'dendi'    => 'Fofo bɔ',
                 'bariba'   => 'Baani bɔ',
+                'emoji'    => '👋',
             ],
             [
                 'francais' => 'Bonne journée',
@@ -57,6 +61,7 @@ class SalutationSeeder extends Seeder
                 'yoruba'   => 'Ẹ kú ọjọ́',
                 'dendi'    => 'Fofo zɔn',
                 'bariba'   => 'Baani zɔn',
+                'emoji'    => '☀️',
             ],
         ]);
     }

@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         // Create test user only if it doesn't exist
         if (!User::where('email', 'test@example.com')->exists()) {
             User::factory()->create([
@@ -25,6 +23,7 @@ class DatabaseSeeder extends Seeder
         }
 
         $this->call([
+            UserSeeder::class,
             SalutationSeeder::class,
             CouleurSeeder::class,
             NombreSeeder::class,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PartieDuCorps;
 use App\Http\Requests\StorePartieDuCorpsRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PartieDuCorpsController extends Controller
@@ -16,6 +17,35 @@ class PartieDuCorpsController extends Controller
     {
         $parties = PartieDuCorps::all();
         return view('partie_du_corps.index', compact('parties'));
+    }
+    
+    /**
+     * Display learning view based on user's languages.
+     */
+    public function learn()
+    {
+        $parties = PartieDuCorps::all();
+        
+        $user = Auth::user();
+        $fromLang = $user->langue_parlee ?? 'francais';
+        $toLang = $user->langue_apprendre ?? 'fon';
+        
+        // Map language keys to column names
+        $langMap = [
+            'francais' => 'francais',
+            'anglais' => 'anglais',
+            'fon' => 'fon',
+            'goun' => 'goun',
+            'youba' => 'youba',
+            'dendi' => 'dendi',
+            'bariba' => 'bariba',
+            'yoruba' => 'yoruba'
+        ];
+        
+        $fromColumn = $langMap[$fromLang] ?? 'francais';
+        $toColumn = $langMap[$toLang] ?? 'fon';
+        
+        return view('partie_du_corps.learn', compact('parties', 'fromColumn', 'toColumn', 'fromLang', 'toLang'));
     }
 
     /**

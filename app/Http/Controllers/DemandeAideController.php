@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\DemandeAide;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DemandeAideController extends Controller
 {
@@ -12,9 +13,37 @@ class DemandeAideController extends Controller
      */
     public function index()
     {
-        $demandesAide = DemandeAide::all();
-
-        return view('demandes_aide.index', compact('demandesAide'));
+        $demandes = DemandeAide::all();
+        return view('demandes_aide.index', compact('demandes'));
+    }
+    
+    /**
+     * Display learning view based on user's languages.
+     */
+    public function learn()
+    {
+        $demandes = DemandeAide::all();
+        
+        $user = Auth::user();
+        $fromLang = $user->langue_parlee ?? 'francais';
+        $toLang = $user->langue_apprendre ?? 'fon';
+        
+        // Map language keys to column names
+        $langMap = [
+            'francais' => 'francais',
+            'anglais' => 'anglais',
+            'fon' => 'fon',
+            'goun' => 'goun',
+            'youba' => 'youba',
+            'dendi' => 'dendi',
+            'bariba' => 'bariba',
+            'yoruba' => 'yoruba'
+        ];
+        
+        $fromColumn = $langMap[$fromLang] ?? 'francais';
+        $toColumn = $langMap[$toLang] ?? 'fon';
+        
+        return view('demandes_aide.learn', compact('demandes', 'fromColumn', 'toColumn', 'fromLang', 'toLang'));
     }
 
     /**
@@ -100,3 +129,4 @@ class DemandeAideController extends Controller
             ->with('success', 'Demande d\'aide supprimée avec succès.');
     }
 }
+

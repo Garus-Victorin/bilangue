@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Couleur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CouleurController extends Controller
 {
@@ -15,6 +16,35 @@ class CouleurController extends Controller
         $couleurs = Couleur::all();
 
         return view('couleurs.index', compact('couleurs'));
+    }
+    
+    /**
+     * Display learning view based on user's languages.
+     */
+    public function learn()
+    {
+        $couleurs = Couleur::all();
+        
+        $user = Auth::user();
+        $fromLang = $user->langue_parlee ?? 'francais';
+        $toLang = $user->langue_apprendre ?? 'fon';
+        
+        // Map language keys to column names
+        $langMap = [
+            'francais' => 'francais',
+            'anglais' => 'anglais',
+            'fon' => 'fon',
+            'goun' => 'goun',
+            'youba' => 'youba',
+            'dendi' => 'dendi',
+            'bariba' => 'bariba',
+            'yoruba' => 'yoruba'
+        ];
+        
+        $fromColumn = $langMap[$fromLang] ?? 'francais';
+        $toColumn = $langMap[$toLang] ?? 'fon';
+        
+        return view('couleurs.learn', compact('couleurs', 'fromColumn', 'toColumn', 'fromLang', 'toLang'));
     }
 
     /**

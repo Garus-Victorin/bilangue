@@ -18,5 +18,6 @@ class PhraseBasique extends Model
         'yoruba',
         'dendi',
         'anglais',
+        'emoji',
     ];
 }

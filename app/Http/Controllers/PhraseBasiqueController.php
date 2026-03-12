@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PhraseBasique;
-use App\Http\Requests\StorePhraseBasiqueRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PhraseBasiqueController extends Controller
 {
@@ -13,9 +13,37 @@ class PhraseBasiqueController extends Controller
      */
     public function index()
     {
-        $phrasesBasiques = PhraseBasique::all();
-
-        return view('phrases_basiques.index', compact('phrasesBasiques'));
+        $phrases = PhraseBasique::all();
+        return view('phrases_basiques.index', compact('phrases'));
+    }
+    
+    /**
+     * Display learning view based on user's languages.
+     */
+    public function learn()
+    {
+        $phrases = PhraseBasique::all();
+        
+        $user = Auth::user();
+        $fromLang = $user->langue_parlee ?? 'francais';
+        $toLang = $user->langue_apprendre ?? 'fon';
+        
+        // Map language keys to column names
+        $langMap = [
+            'francais' => 'francais',
+            'anglais' => 'anglais',
+            'fon' => 'fon',
+            'goun' => 'goun',
+            'youba' => 'youba',
+            'dendi' => 'dendi',
+            'bariba' => 'bariba',
+            'yoruba' => 'yoruba'
+        ];
+        
+        $fromColumn = $langMap[$fromLang] ?? 'francais';
+        $toColumn = $langMap[$toLang] ?? 'fon';
+        
+        return view('phrases_basiques.learn', compact('phrases', 'fromColumn', 'toColumn', 'fromLang', 'toLang'));
     }
 
     /**
@@ -29,9 +57,19 @@ class PhraseBasiqueController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePhraseBasiqueRequest $request)
+    public function store(Request $request)
     {
-        PhraseBasique::create($request->validated());
+        $validated = $request->validate([
+            'phrase' => 'required|string|max:255',
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+        ]);
+
+        PhraseBasique::create($validated);
 
         return redirect()
             ->route('phrases_basiques.index')
@@ -60,9 +98,19 @@ class PhraseBasiqueController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StorePhraseBasiqueRequest $request, PhraseBasique $phraseBasique)
+    public function update(Request $request, PhraseBasique $phraseBasique)
     {
-        $phraseBasique->update($request->validated());
+        $validated = $request->validate([
+            'phrase' => 'required|string|max:255',
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+        ]);
+
+        $phraseBasique->update($validated);
 
         return redirect()
             ->route('phrases_basiques.index')
@@ -81,3 +129,4 @@ class PhraseBasiqueController extends Controller
             ->with('success', 'Phrase basique supprimée avec succès.');
     }
 }
+

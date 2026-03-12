@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Salutation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SalutationController extends Controller
 {
@@ -15,6 +16,35 @@ class SalutationController extends Controller
         $salutations = Salutation::all();
 
         return view('salutations.index', compact('salutations'));
+    }
+    
+    /**
+     * Display learning view based on user's languages.
+     */
+    public function learn()
+    {
+        $salutations = Salutation::all();
+        
+        $user = Auth::user();
+        $fromLang = $user->langue_parlee ?? 'francais';
+        $toLang = $user->langue_apprendre ?? 'fon';
+        
+        // Map language keys to column names
+        $langMap = [
+            'francais' => 'francais',
+            'anglais' => 'anglais',
+            'fon' => 'fon',
+            'goun' => 'goun',
+            'youba' => 'youba',
+            'dendi' => 'dendi',
+            'bariba' => 'bariba',
+            'yoruba' => 'yoruba'
+        ];
+        
+        $fromColumn = $langMap[$fromLang] ?? 'francais';
+        $toColumn = $langMap[$toLang] ?? 'fon';
+        
+        return view('salutations.learn', compact('salutations', 'fromColumn', 'toColumn', 'fromLang', 'toLang'));
     }
 
     /**

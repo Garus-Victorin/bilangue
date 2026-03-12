@@ -13,6 +13,7 @@ class ProduitSeeder extends Seeder
     public function run(): void
     {
         $produits = [
+
             [
                 'francais' => 'Riz',
                 'goun' => 'Mali',
@@ -20,7 +21,10 @@ class ProduitSeeder extends Seeder
                 'yoruba' => 'Iresi',
                 'dendi' => 'Shinkafa',
                 'anglais' => 'Rice',
+                'emoji' => '🍚',
             ],
+
+
             [
                 'francais' => 'Maïs',
                 'goun' => 'Koko',
@@ -28,110 +32,125 @@ class ProduitSeeder extends Seeder
                 'yoruba' => 'Agbado',
                 'dendi' => 'Masara',
                 'anglais' => 'Corn',
+                'emoji' => '🌽',
             ],
+
             [
-                'francais' => 'Haricot',
+'francais' => 'Haricot',
                 'goun' => 'Awinsa',
                 'fon' => 'Ewa',
                 'yoruba' => 'Ewa',
                 'dendi' => 'Wake',
                 'anglais' => 'Beans',
+                'emoji' => '🫘',
             ],
             [
-                'francais' => 'Huile',
+'francais' => 'Huile',
                 'goun' => 'Ami',
                 'fon' => 'Ami',
                 'yoruba' => 'Epo',
                 'dendi' => 'Mai',
                 'anglais' => 'Oil',
+                'emoji' => '🛢️',
             ],
             [
-                'francais' => 'Sel',
+'francais' => 'Sel',
                 'goun' => 'Sika',
                 'fon' => 'Yinyin',
                 'yoruba' => 'Iyọ',
                 'dendi' => 'Gishiri',
                 'anglais' => 'Salt',
+                'emoji' => '🧂',
             ],
             [
-                'francais' => 'Sucre',
+'francais' => 'Sucre',
                 'goun' => 'Sukali',
                 'fon' => 'Sukali',
                 'yoruba' => 'Sukari',
                 'dendi' => 'Sukari',
                 'anglais' => 'Sugar',
+                'emoji' => '🍬',
             ],
             [
-                'francais' => 'Piment',
+'francais' => 'Piment',
                 'goun' => 'Taka',
                 'fon' => 'Taka',
                 'yoruba' => 'Ata',
                 'dendi' => 'Barkono',
                 'anglais' => 'Pepper',
+                'emoji' => '🌶️',
             ],
             [
-                'francais' => 'Tomate',
+'francais' => 'Tomate',
                 'goun' => 'Timati',
                 'fon' => 'Timati',
                 'yoruba' => 'Timati',
                 'dendi' => 'Timatar',
                 'anglais' => 'Tomato',
+                'emoji' => '🍅',
             ],
             [
-                'francais' => 'Oignon',
+'francais' => 'Oignon',
                 'goun' => 'Alubosa',
                 'fon' => 'Alubosa',
                 'yoruba' => 'Alubosa',
                 'dendi' => 'Albasa',
                 'anglais' => 'Onion',
+                'emoji' => '🧅',
             ],
             [
-                'francais' => 'Poisson',
+'francais' => 'Poisson',
                 'goun' => 'Hùn',
                 'fon' => 'Hùn',
                 'yoruba' => 'Ẹja',
                 'dendi' => 'Kifi',
                 'anglais' => 'Fish',
+                'emoji' => '🐟',
             ],
             [
-                'francais' => 'Viande',
+'francais' => 'Viande',
                 'goun' => 'Ẹran',
                 'fon' => 'Ẹran',
                 'yoruba' => 'Ẹran',
                 'dendi' => 'Nama',
                 'anglais' => 'Meat',
+                'emoji' => '🥩',
             ],
             [
-                'francais' => 'Pain',
+'francais' => 'Pain',
                 'goun' => 'Búrẹdi',
                 'fon' => 'Búrẹdi',
                 'yoruba' => 'Búrẹdi',
                 'dendi' => 'Burodi',
                 'anglais' => 'Bread',
+                'emoji' => '🍞',
             ],
             [
-                'francais' => 'Lait',
+'francais' => 'Lait',
                 'goun' => 'Wara',
                 'fon' => 'Wara',
                 'yoruba' => 'Wara',
                 'dendi' => 'Madara',
                 'anglais' => 'Milk',
+                'emoji' => '🥛',
             ],
             [
-                'francais' => 'Beurre',
+'francais' => 'Beurre',
                 'goun' => 'Bọta',
                 'fon' => 'Bọta',
                 'yoruba' => 'Bọta',
                 'dendi' => 'Bata',
                 'anglais' => 'Butter',
+                'emoji' => '🧈',
             ],
             [
-                'francais' => 'Œufs',
+'francais' => 'Œufs',
                 'goun' => 'Ẹyin',
                 'fon' => 'Ẹyin',
                 'yoruba' => 'Ẹyin',
                 'dendi' => 'Kwai',
                 'anglais' => 'Eggs',
+                'emoji' => '🥚',
             ],
         ];
 
@@ -140,3 +159,4 @@ class ProduitSeeder extends Seeder
         }
     }
 }
+

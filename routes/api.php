@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\ProduitApiController;
 use App\Http\Controllers\Api\ExpressionBasiqueApiController;
 use App\Http\Controllers\Api\PhraseBasiqueApiController;
 use App\Http\Controllers\Api\PartieDuCorpsApiController;
+use App\Http\Controllers\Api\AuthApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,16 @@ use App\Http\Controllers\Api\PartieDuCorpsApiController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Auth API Routes (public)
+Route::post('/register', [AuthApiController::class, 'register']);
+Route::post('/login', [AuthApiController::class, 'login']);
+
+// Protected Auth API Routes (with token)
+Route::post('/logout', [AuthApiController::class, 'logout']);
+Route::get('/user', [AuthApiController::class, 'user']);
+Route::put('/user', [AuthApiController::class, 'updateProfile']);
+Route::put('/password', [AuthApiController::class, 'updatePassword']);
+Route::put('/langues', [AuthApiController::class, 'saveLanguages']);
 
 // API Routes - Returns JSON
 Route::apiResource('salutations', SalutationApiController::class);
