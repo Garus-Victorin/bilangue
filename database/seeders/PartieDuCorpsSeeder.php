@@ -22,6 +22,7 @@ class PartieDuCorpsSeeder extends Seeder
                 'yoruba' => 'Ori',
                 'dendi' => 'Ta',
                 'anglais' => 'Head',
+                'emoji' => '🗣️',
             ],
             [
                 'nom' => 'Yeux',
@@ -31,6 +32,7 @@ class PartieDuCorpsSeeder extends Seeder
                 'yoruba' => 'Oju',
                 'dendi' => 'Nyen',
                 'anglais' => 'Eyes',
+                'emoji' => '👀',
             ],
             [
                 'nom' => 'Nez',
@@ -40,6 +42,7 @@ class PartieDuCorpsSeeder extends Seeder
                 'yoruba' => 'Imu',
                 'dendi' => 'Nyon',
                 'anglais' => 'Nose',
+                'emoji' => '👃',
             ],
             [
                 'nom' => 'Bouche',
@@ -49,6 +52,7 @@ class PartieDuCorpsSeeder extends Seeder
                 'yoruba' => 'Enu',
                 'dendi' => 'Nu',
                 'anglais' => 'Mouth',
+                'emoji' => '👄',
             ],
             [
                 'nom' => 'Oreilles',
@@ -58,6 +62,7 @@ class PartieDuCorpsSeeder extends Seeder
                 'yoruba' => 'Eti',
                 'dendi' => 'Toli',
                 'anglais' => 'Ears',
+                'emoji' => '👂',
             ],
             [
                 'nom' => 'Bras',
@@ -67,6 +72,7 @@ class PartieDuCorpsSeeder extends Seeder
                 'yoruba' => 'Apa',
                 'dendi' => 'Woli',
                 'anglais' => 'Arms',
+                'emoji' => '💪',
             ],
             [
                 'nom' => 'Main',
@@ -76,6 +82,7 @@ class PartieDuCorpsSeeder extends Seeder
                 'yoruba' => 'Owo',
                 'dendi' => 'Nu',
                 'anglais' => 'Hand',
+                'emoji' => '✋',
             ],
             [
                 'nom' => 'Doigts',
@@ -85,6 +92,7 @@ class PartieDuCorpsSeeder extends Seeder
                 'yoruba' => 'Ika',
                 'dendi' => 'Nusi',
                 'anglais' => 'Fingers',
+                'emoji' => '🖐️',
             ],
             [
                 'nom' => 'Jambes',
@@ -94,6 +102,7 @@ class PartieDuCorpsSeeder extends Seeder
                 'yoruba' => 'Ese',
                 'dendi' => 'Koli',
                 'anglais' => 'Legs',
+                'emoji' => '🦵',
             ],
             [
                 'nom' => 'Pieds',
@@ -103,6 +112,7 @@ class PartieDuCorpsSeeder extends Seeder
                 'yoruba' => 'Ese',
                 'dendi' => 'Afi',
                 'anglais' => 'Feet',
+                'emoji' => '🦶',
             ],
         ];
 

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produit;
-use App\Http\Requests\StoreProduitRequest;
-use App\Http\Requests\UpdateProduitRequest;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProduitController extends Controller
 {
@@ -14,8 +13,37 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        $produits = Produit::paginate(10);
+        $produits = Produit::all();
         return view('produits.index', compact('produits'));
+    }
+    
+    /**
+     * Display learning view based on user's languages.
+     */
+    public function learn()
+    {
+        $produits = Produit::all();
+        
+        $user = Auth::user();
+        $fromLang = $user->langue_parlee ?? 'francais';
+        $toLang = $user->langue_apprendre ?? 'fon';
+        
+        // Map language keys to column names
+        $langMap = [
+            'francais' => 'francais',
+            'anglais' => 'anglais',
+            'fon' => 'fon',
+            'goun' => 'goun',
+            'youba' => 'youba',
+            'dendi' => 'dendi',
+            'bariba' => 'bariba',
+            'yoruba' => 'yoruba'
+        ];
+        
+        $fromColumn = $langMap[$fromLang] ?? 'francais';
+        $toColumn = $langMap[$toLang] ?? 'fon';
+        
+        return view('produits.learn', compact('produits', 'fromColumn', 'toColumn', 'fromLang', 'toLang'));
     }
 
     /**
@@ -29,17 +57,23 @@ class ProduitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProduitRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
+        $validated = $request->validate([
+            'image' => 'nullable|string',
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+        ]);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('produits', 'public');
-        }
+        Produit::create($validated);
 
-        Produit::create($data);
-
-        return redirect()->route('produits.index')->with('success', 'Produit créé avec succès.');
+        return redirect()
+            ->route('produits.index')
+            ->with('success', 'Produit créé avec succès.');
     }
 
     /**
@@ -47,8 +81,9 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        $previous = Produit::where('id_produit', '<', (int)$produit->id_produit)->orderBy('id_produit', 'desc')->first();
-        $next = Produit::where('id_produit', '>', (int)$produit->id_produit)->orderBy('id_produit', 'asc')->first();
+        $previous = Produit::where('id_produit', '<', $produit->id_produit)->orderBy('id_produit', 'desc')->first();
+        $next = Produit::where('id_produit', '>', $produit->id_produit)->orderBy('id_produit', 'asc')->first();
+
         return view('produits.show', compact('produit', 'previous', 'next'));
     }
 
@@ -63,21 +98,23 @@ class ProduitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProduitRequest $request, Produit $produit)
+    public function update(Request $request, Produit $produit)
     {
-        $data = $request->validated();
+        $validated = $request->validate([
+            'image' => 'nullable|string',
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+        ]);
 
-        if ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($produit->image && Storage::disk('public')->exists($produit->image)) {
-                Storage::disk('public')->delete($produit->image);
-            }
-            $data['image'] = $request->file('image')->store('produits', 'public');
-        }
+        $produit->update($validated);
 
-        $produit->update($data);
-
-        return redirect()->route('produits.index')->with('success', 'Produit mis à jour avec succès.');
+        return redirect()
+            ->route('produits.index')
+            ->with('success', 'Produit mis à jour avec succès.');
     }
 
     /**
@@ -85,13 +122,11 @@ class ProduitController extends Controller
      */
     public function destroy(Produit $produit)
     {
-        // Delete image if exists
-        if ($produit->image && Storage::disk('public')->exists($produit->image)) {
-            Storage::disk('public')->delete($produit->image);
-        }
-
         $produit->delete();
 
-        return redirect()->route('produits.index')->with('success', 'Produit supprimé avec succès.');
+        return redirect()
+            ->route('produits.index')
+            ->with('success', 'Produit supprimé avec succès.');
     }
 }
+

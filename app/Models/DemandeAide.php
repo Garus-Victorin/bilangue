@@ -18,5 +18,6 @@ class DemandeAide extends Model
         'yoruba',
         'dendi',
         'anglais',
+        'emoji',
     ];
 }

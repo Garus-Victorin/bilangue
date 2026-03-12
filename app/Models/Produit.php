@@ -11,12 +11,14 @@ class Produit extends Model
     protected $primaryKey = 'id_produit';
 
     protected $fillable = [
-        'image',
+'image',
         'francais',
         'goun',
         'fon',
         'yoruba',
         'dendi',
         'anglais',
+        'emoji',
     ];
+
 }

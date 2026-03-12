@@ -20,6 +20,7 @@ class ExpressionMaisonSeeder extends Seeder
                 'yoruba' => 'Ẹ káàrọ̀ màmá',
                 'dendi' => 'Mi sú dɔ nɔ',
                 'anglais' => 'Good morning mom',
+                'emoji' => '👩‍👧',
             ],
             [
                 'francais' => 'J\'ai faim',
@@ -28,6 +29,7 @@ class ExpressionMaisonSeeder extends Seeder
                 'yoruba' => 'Ẹbi ń pa mí',
                 'dendi' => 'Mi wú',
                 'anglais' => 'I am hungry',
+                'emoji' => '🍽️',
             ],
             [
                 'francais' => 'J\'ai soif',
@@ -36,6 +38,7 @@ class ExpressionMaisonSeeder extends Seeder
                 'yoruba' => 'Ọ̀nà ń gbẹ mí',
                 'dendi' => 'Mi wú nú',
                 'anglais' => 'I am thirsty',
+                'emoji' => '💧',
             ],
             [
                 'francais' => 'Où est papa ?',
@@ -44,6 +47,7 @@ class ExpressionMaisonSeeder extends Seeder
                 'yoruba' => 'Níbo ni bàbá wà?',
                 'dendi' => 'Papa yɔ dɛ ?',
                 'anglais' => 'Where is dad?',
+                'emoji' => '👨',
             ],
             [
                 'francais' => 'Je vais sortir',
@@ -52,6 +56,7 @@ class ExpressionMaisonSeeder extends Seeder
                 'yoruba' => 'Èmi yóò jáde',
                 'dendi' => 'Mi na wá',
                 'anglais' => 'I am going out',
+                'emoji' => '🚪',
             ],
             [
                 'francais' => 'Aide-moi, s\'il te plaît',
@@ -60,6 +65,7 @@ class ExpressionMaisonSeeder extends Seeder
                 'yoruba' => 'Ràn mí lọ́wọ́, jọ̀wọ́',
                 'dendi' => 'Na mi kpɔn',
                 'anglais' => 'Help me, please',
+                'emoji' => '🆘',
             ],
             [
                 'francais' => 'J\'ai fini de manger',
@@ -68,6 +74,7 @@ class ExpressionMaisonSeeder extends Seeder
                 'yoruba' => 'Mo ti jẹun tán',
                 'dendi' => 'Mi xwé nú',
                 'anglais' => 'I finished eating',
+                'emoji' => '✅',
             ],
             [
                 'francais' => 'Bonne nuit',
@@ -76,6 +83,7 @@ class ExpressionMaisonSeeder extends Seeder
                 'yoruba' => 'Ẹ̀ṣẹ̀rẹ̀',
                 'dendi' => 'Mi sú dɔ',
                 'anglais' => 'Good night',
+                'emoji' => '🌙',
             ],
         ];
 

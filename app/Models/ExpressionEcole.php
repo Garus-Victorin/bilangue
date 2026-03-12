@@ -32,5 +32,6 @@ class ExpressionEcole extends Model
         'yoruba',
         'dendi',
         'anglais',
+        'emoji',
     ];
 }

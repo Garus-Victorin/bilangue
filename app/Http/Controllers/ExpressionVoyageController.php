@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ExpressionVoyage;
-use App\Http\Requests\StoreExpressionVoyageRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExpressionVoyageController extends Controller
 {
@@ -15,6 +15,35 @@ class ExpressionVoyageController extends Controller
     {
         $expressions = ExpressionVoyage::all();
         return view('expressions_voyage.index', compact('expressions'));
+    }
+    
+    /**
+     * Display learning view based on user's languages.
+     */
+    public function learn()
+    {
+        $expressions = ExpressionVoyage::all();
+        
+        $user = Auth::user();
+        $fromLang = $user->langue_parlee ?? 'francais';
+        $toLang = $user->langue_apprendre ?? 'fon';
+        
+        // Map language keys to column names
+        $langMap = [
+            'francais' => 'francais',
+            'anglais' => 'anglais',
+            'fon' => 'fon',
+            'goun' => 'goun',
+            'youba' => 'youba',
+            'dendi' => 'dendi',
+            'bariba' => 'bariba',
+            'yoruba' => 'yoruba'
+        ];
+        
+        $fromColumn = $langMap[$fromLang] ?? 'francais';
+        $toColumn = $langMap[$toLang] ?? 'fon';
+        
+        return view('expressions_voyage.learn', compact('expressions', 'fromColumn', 'toColumn', 'fromLang', 'toLang'));
     }
 
     /**
@@ -28,13 +57,23 @@ class ExpressionVoyageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreExpressionVoyageRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
+        $validated = $request->validate([
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+            'emoji' => 'nullable|string|max:10',
+        ]);
 
-        ExpressionVoyage::create($data);
+        ExpressionVoyage::create($validated);
 
-        return redirect()->route('expressions_voyage.index')->with('success', 'Expression de voyage créée avec succès.');
+        return redirect()
+            ->route('expressions_voyage.index')
+            ->with('success', 'Expression voyage créée avec succès.');
     }
 
     /**
@@ -42,8 +81,9 @@ class ExpressionVoyageController extends Controller
      */
     public function show(ExpressionVoyage $expressionVoyage)
     {
-        $previous = ExpressionVoyage::where('id_expression_voyage', '<', (int)$expressionVoyage->id_expression_voyage)->orderBy('id_expression_voyage', 'desc')->first();
-        $next = ExpressionVoyage::where('id_expression_voyage', '>', (int)$expressionVoyage->id_expression_voyage)->orderBy('id_expression_voyage', 'asc')->first();
+        $previous = ExpressionVoyage::where('id_expression_voyage', '<', $expressionVoyage->id_expression_voyage)->orderBy('id_expression_voyage', 'desc')->first();
+        $next = ExpressionVoyage::where('id_expression_voyage', '>', $expressionVoyage->id_expression_voyage)->orderBy('id_expression_voyage', 'asc')->first();
+
         return view('expressions_voyage.show', compact('expressionVoyage', 'previous', 'next'));
     }
 
@@ -58,13 +98,23 @@ class ExpressionVoyageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreExpressionVoyageRequest $request, ExpressionVoyage $expressionVoyage)
+    public function update(Request $request, ExpressionVoyage $expressionVoyage)
     {
-        $data = $request->validated();
+        $validated = $request->validate([
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+            'emoji' => 'nullable|string|max:10',
+        ]);
 
-        $expressionVoyage->update($data);
+        $expressionVoyage->update($validated);
 
-        return redirect()->route('expressions_voyage.index')->with('success', 'Expression de voyage mise à jour avec succès.');
+        return redirect()
+            ->route('expressions_voyage.index')
+            ->with('success', 'Expression voyage mise à jour avec succès.');
     }
 
     /**
@@ -74,6 +124,9 @@ class ExpressionVoyageController extends Controller
     {
         $expressionVoyage->delete();
 
-        return redirect()->route('expressions_voyage.index')->with('success', 'Expression de voyage supprimée avec succès.');
+        return redirect()
+            ->route('expressions_voyage.index')
+            ->with('success', 'Expression voyage supprimée avec succès.');
     }
 }
+

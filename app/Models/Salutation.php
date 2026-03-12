@@ -17,5 +17,6 @@ class Salutation extends Model
         'dendi',
         'anglais',
         'bariba',
+        'emoji',
     ];
 }

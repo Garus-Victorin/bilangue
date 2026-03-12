@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ExpressionEcole;
-use App\Http\Requests\StoreExpressionEcoleRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExpressionEcoleController extends Controller
 {
@@ -15,6 +15,35 @@ class ExpressionEcoleController extends Controller
     {
         $expressions = ExpressionEcole::all();
         return view('expressions_ecole.index', compact('expressions'));
+    }
+    
+    /**
+     * Display learning view based on user's languages.
+     */
+    public function learn()
+    {
+        $expressions = ExpressionEcole::all();
+        
+        $user = Auth::user();
+        $fromLang = $user->langue_parlee ?? 'francais';
+        $toLang = $user->langue_apprendre ?? 'fon';
+        
+        // Map language keys to column names
+        $langMap = [
+            'francais' => 'francais',
+            'anglais' => 'anglais',
+            'fon' => 'fon',
+            'goun' => 'goun',
+            'youba' => 'youba',
+            'dendi' => 'dendi',
+            'bariba' => 'bariba',
+            'yoruba' => 'yoruba'
+        ];
+        
+        $fromColumn = $langMap[$fromLang] ?? 'francais';
+        $toColumn = $langMap[$toLang] ?? 'fon';
+        
+        return view('expressions_ecole.learn', compact('expressions', 'fromColumn', 'toColumn', 'fromLang', 'toLang'));
     }
 
     /**
@@ -28,11 +57,22 @@ class ExpressionEcoleController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreExpressionEcoleRequest $request)
+    public function store(Request $request)
     {
-        ExpressionEcole::create($request->validated());
+        $validated = $request->validate([
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+        ]);
 
-        return redirect()->route('expressions_ecole.index')->with('success', 'Expression scolaire créée avec succès.');
+        ExpressionEcole::create($validated);
+
+        return redirect()
+            ->route('expressions_ecole.index')
+            ->with('success', 'Expression d\'école créée avec succès.');
     }
 
     /**
@@ -42,6 +82,7 @@ class ExpressionEcoleController extends Controller
     {
         $previous = ExpressionEcole::where('id_expression_ecole', '<', $expressionEcole->id_expression_ecole)->orderBy('id_expression_ecole', 'desc')->first();
         $next = ExpressionEcole::where('id_expression_ecole', '>', $expressionEcole->id_expression_ecole)->orderBy('id_expression_ecole', 'asc')->first();
+
         return view('expressions_ecole.show', compact('expressionEcole', 'previous', 'next'));
     }
 
@@ -56,11 +97,22 @@ class ExpressionEcoleController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreExpressionEcoleRequest $request, ExpressionEcole $expressionEcole)
+    public function update(Request $request, ExpressionEcole $expressionEcole)
     {
-        $expressionEcole->update($request->validated());
+        $validated = $request->validate([
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+        ]);
 
-        return redirect()->route('expressions_ecole.index')->with('success', 'Expression scolaire mise à jour avec succès.');
+        $expressionEcole->update($validated);
+
+        return redirect()
+            ->route('expressions_ecole.index')
+            ->with('success', 'Expression d\'école mise à jour avec succès.');
     }
 
     /**
@@ -70,6 +122,9 @@ class ExpressionEcoleController extends Controller
     {
         $expressionEcole->delete();
 
-        return redirect()->route('expressions_ecole.index')->with('success', 'Expression scolaire supprimée avec succès.');
+        return redirect()
+            ->route('expressions_ecole.index')
+            ->with('success', 'Expression d\'école supprimée avec succès.');
     }
 }
+

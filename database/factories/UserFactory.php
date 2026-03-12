@@ -31,6 +31,8 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'status' => 'offline',
             'type' => 'user',
+            'langue_parlee' => 'francais',
+            'langue_apprendre' => 'goun',
             'remember_token' => Str::random(10),
         ];
     }

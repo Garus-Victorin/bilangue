@@ -7,9 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class ExpressionBasiqueSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         DB::table('expressions_basiques')->insert([
@@ -22,6 +19,7 @@ class ExpressionBasiqueSeeder extends Seeder
                 'yoruba' => 'Ẹ káàárọ̀',
                 'dendi' => 'Fofo',
                 'anglais' => 'Hello',
+                'emoji' => '👋',
             ],
             [
                 'nom' => 'merci beaucoup',
@@ -32,6 +30,7 @@ class ExpressionBasiqueSeeder extends Seeder
                 'yoruba' => 'Ẹ ṣeun púpọ̀',
                 'dendi' => 'Akpè nú',
                 'anglais' => 'Thank you very much',
+                'emoji' => '🙏',
             ],
             [
                 'nom' => 'à demain',
@@ -42,6 +41,7 @@ class ExpressionBasiqueSeeder extends Seeder
                 'yoruba' => 'Ó dàbọ̀ lọ́la',
                 'dendi' => 'Kù zɔ̀n',
                 'anglais' => 'See you tomorrow',
+                'emoji' => '👋',
             ],
             [
                 'nom' => 'comment vas-tu',
@@ -52,6 +52,7 @@ class ExpressionBasiqueSeeder extends Seeder
                 'yoruba' => 'Báwo ni o ṣe wà ?',
                 'dendi' => 'Nǔ wè ?',
                 'anglais' => 'How are you?',
+                'emoji' => '❓',
             ],
             [
                 'nom' => 'à bientôt',
@@ -62,6 +63,7 @@ class ExpressionBasiqueSeeder extends Seeder
                 'yoruba' => 'Ó dàbọ̀ láìpẹ́',
                 'dendi' => 'Kù wá',
                 'anglais' => 'See you soon',
+                'emoji' => '👋',
             ],
             [
                 'nom' => 'ça va',
@@ -72,6 +74,7 @@ class ExpressionBasiqueSeeder extends Seeder
                 'yoruba' => 'Ó dára',
                 'dendi' => 'Nǔ wè',
                 'anglais' => 'It\'s fine',
+                'emoji' => '😊',
             ],
             [
                 'nom' => 'pardon',
@@ -82,7 +85,9 @@ class ExpressionBasiqueSeeder extends Seeder
                 'yoruba' => 'Dá bí',
                 'dendi' => 'Ma lɛ',
                 'anglais' => 'Sorry',
+                'emoji' => '😔',
             ],
         ]);
     }
 }
+

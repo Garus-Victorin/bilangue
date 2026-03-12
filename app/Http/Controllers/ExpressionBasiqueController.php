@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ExpressionBasique;
-use App\Http\Requests\StoreExpressionBasiqueRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ExpressionBasiqueController extends Controller
 {
@@ -16,6 +15,35 @@ class ExpressionBasiqueController extends Controller
     {
         $expressions = ExpressionBasique::all();
         return view('expressions_basiques.index', compact('expressions'));
+    }
+    
+    /**
+     * Display learning view based on user's languages.
+     */
+    public function learn()
+    {
+        $expressions = ExpressionBasique::all();
+        
+        $user = Auth::user();
+        $fromLang = $user->langue_parlee ?? 'francais';
+        $toLang = $user->langue_apprendre ?? 'fon';
+        
+        // Map language keys to column names
+        $langMap = [
+            'francais' => 'francais',
+            'anglais' => 'anglais',
+            'fon' => 'fon',
+            'goun' => 'goun',
+            'youba' => 'youba',
+            'dendi' => 'dendi',
+            'bariba' => 'bariba',
+            'yoruba' => 'yoruba'
+        ];
+        
+        $fromColumn = $langMap[$fromLang] ?? 'francais';
+        $toColumn = $langMap[$toLang] ?? 'fon';
+        
+        return view('expressions_basiques.learn', compact('expressions', 'fromColumn', 'toColumn', 'fromLang', 'toLang'));
     }
 
     /**
@@ -29,17 +57,24 @@ class ExpressionBasiqueController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreExpressionBasiqueRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
+        $validated = $request->validate([
+            'nom' => 'required|string|max:255',
+            'image' => 'nullable|string',
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+        ]);
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('expressions_basiques', 'public');
-        }
+        ExpressionBasique::create($validated);
 
-        ExpressionBasique::create($data);
-
-        return redirect()->route('expressions_basiques.index')->with('success', 'Expression basique créée avec succès.');
+        return redirect()
+            ->route('expressions_basiques.index')
+            ->with('success', 'Expression basique créée avec succès.');
     }
 
     /**
@@ -47,8 +82,9 @@ class ExpressionBasiqueController extends Controller
      */
     public function show(ExpressionBasique $expressionBasique)
     {
-        $previous = ExpressionBasique::where('id_expression_basique', '<', (int)$expressionBasique->id_expression_basique)->orderBy('id_expression_basique', 'desc')->first();
-        $next = ExpressionBasique::where('id_expression_basique', '>', (int)$expressionBasique->id_expression_basique)->orderBy('id_expression_basique', 'asc')->first();
+        $previous = ExpressionBasique::where('id', '<', $expressionBasique->id)->orderBy('id', 'desc')->first();
+        $next = ExpressionBasique::where('id', '>', $expressionBasique->id)->orderBy('id', 'asc')->first();
+
         return view('expressions_basiques.show', compact('expressionBasique', 'previous', 'next'));
     }
 
@@ -63,21 +99,24 @@ class ExpressionBasiqueController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreExpressionBasiqueRequest $request, ExpressionBasique $expressionBasique)
+    public function update(Request $request, ExpressionBasique $expressionBasique)
     {
-        $data = $request->validated();
+        $validated = $request->validate([
+            'nom' => 'required|string|max:255',
+            'image' => 'nullable|string',
+            'francais' => 'required|string|max:255',
+            'goun' => 'required|string|max:255',
+            'fon' => 'required|string|max:255',
+            'yoruba' => 'required|string|max:255',
+            'dendi' => 'required|string|max:255',
+            'anglais' => 'required|string|max:255',
+        ]);
 
-        if ($request->hasFile('image')) {
-            // Supprimer l'ancienne image si elle existe
-            if ($expressionBasique->image) {
-                Storage::disk('public')->delete($expressionBasique->image);
-            }
-            $data['image'] = $request->file('image')->store('expressions_basiques', 'public');
-        }
+        $expressionBasique->update($validated);
 
-        $expressionBasique->update($data);
-
-        return redirect()->route('expressions_basiques.index')->with('success', 'Expression basique mise à jour avec succès.');
+        return redirect()
+            ->route('expressions_basiques.index')
+            ->with('success', 'Expression basique mise à jour avec succès.');
     }
 
     /**
@@ -85,13 +124,11 @@ class ExpressionBasiqueController extends Controller
      */
     public function destroy(ExpressionBasique $expressionBasique)
     {
-        // Supprimer l'image si elle existe et est un fichier local
-        if ($expressionBasique->image && !filter_var($expressionBasique->image, FILTER_VALIDATE_URL)) {
-            Storage::disk('public')->delete($expressionBasique->image);
-        }
-
         $expressionBasique->delete();
 
-        return redirect()->route('expressions_basiques.index')->with('success', 'Expression basique supprimée avec succès.');
+        return redirect()
+            ->route('expressions_basiques.index')
+            ->with('success', 'Expression basique supprimée avec succès.');
     }
 }
+

@@ -45,6 +45,10 @@ class ExpressionEcoleType extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'The english translation',
             ],
+            'emoji' => [
+                'type' => Type::string(),
+                'description' => 'The emoji representation',
+            ],
             'created_at' => [
                 'type' => Type::string(),
                 'description' => 'The creation date',

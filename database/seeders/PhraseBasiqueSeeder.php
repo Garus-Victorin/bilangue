@@ -21,6 +21,7 @@ class PhraseBasiqueSeeder extends Seeder
                 'yoruba' => 'mo ti wa',
                 'dendi' => 'ayi naa',
                 'anglais' => 'I am coming already',
+                'emoji' => '🏃',
             ],
             [
                 'phrase' => 'je te connais',
@@ -30,24 +31,27 @@ class PhraseBasiqueSeeder extends Seeder
                 'yoruba' => 'mo mọ ọ',
                 'dendi' => 'ayi mɔ wɛ',
                 'anglais' => 'I know you',
+                'emoji' => '😊',
             ],
             [
-                'phrase' => 'j’ai faim',
-                'francais' => 'j’ai faim',
+                'phrase' => 'jai faim',
+                'francais' => 'jai faim',
                 'goun' => 'mi dɔ',
                 'fon' => 'un dɔ',
                 'yoruba' => 'ebi n pa mi',
                 'dendi' => 'ayi dɔ',
                 'anglais' => 'I am hungry',
+                'emoji' => '🍽️',
             ],
             [
-                'phrase' => 'j’ai froid',
-                'francais' => 'j’ai froid',
+                'phrase' => 'jai froid',
+                'francais' => 'jai froid',
                 'goun' => 'mi kɔn',
                 'fon' => 'un kɔn',
                 'yoruba' => 'otutu n pa mi',
                 'dendi' => 'ayi kɔn',
                 'anglais' => 'I am cold',
+                'emoji' => '🥶',
             ],
             [
                 'phrase' => 'bonjour',
@@ -57,6 +61,7 @@ class PhraseBasiqueSeeder extends Seeder
                 'yoruba' => 'e kaaro',
                 'dendi' => 'kɔn',
                 'anglais' => 'good morning',
+                'emoji' => '👋',
             ],
             [
                 'phrase' => 'au revoir',
@@ -66,6 +71,7 @@ class PhraseBasiqueSeeder extends Seeder
                 'yoruba' => 'o daaro',
                 'dendi' => 'kɔn',
                 'anglais' => 'goodbye',
+                'emoji' => '👋',
             ],
             [
                 'phrase' => 'merci',
@@ -75,15 +81,17 @@ class PhraseBasiqueSeeder extends Seeder
                 'yoruba' => 'e se',
                 'dendi' => 'akpɛ',
                 'anglais' => 'thank you',
+                'emoji' => '🙏',
             ],
             [
-                'phrase' => 's’il vous plaît',
-                'francais' => 's’il vous plaît',
+                'phrase' => 'sil vous plait',
+                'francais' => 'sil vous plait',
                 'goun' => 'dɔ',
                 'fon' => 'dɔ',
                 'yoruba' => 'jowo',
                 'dendi' => 'dɔ',
                 'anglais' => 'please',
+                'emoji' => '😊',
             ],
         ];
 
@@ -92,3 +100,4 @@ class PhraseBasiqueSeeder extends Seeder
         }
     }
 }
+

@@ -45,6 +45,10 @@ class PartieDuCorpsType extends GraphQLType
                 'type' => Type::string(),
                 'description' => 'The english translation',
             ],
+            'emoji' => [
+                'type' => Type::string(),
+                'description' => 'The emoji representation',
+            ],
             'image' => [
                 'type' => Type::string(),
                 'description' => 'The image path',
